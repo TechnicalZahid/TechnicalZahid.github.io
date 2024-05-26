@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="brand-logo">
+    <img src="photo.jpg" alt="Logo Image">
+    <span>User Agent Generator</span>
+  </div>
+  <div class="nav-symbol" onclick="toggleRightOverlay()">
+    &#9776;
+  </div>
+</nav>
+
+<div class="right-overlay" id="rightOverlay">
+  <div class="close-overlay" onclick="toggleRightOverlay()">
+    &times;
+  </div>
+  <ul>
+    <li><a href="#contact-us">Contact Us</a></li>
+  </ul>
+</div>
+
+  <div class="container">
+    <a class="key" href="main.html" target="_blank">Generate User Agent</a>
+    <a class="key" href="https://t.me/best_technicals" target="_blank">How To Use</a>
+    <a class="key" href="https://t.me/best_technicals" target="_blank">Join Telegram Channel</a>
+    <a class="key" href="https://facebook.com/groups/892925915357288/" target="_blank">Join Facebook Group</a>
+    <a class="key" href="https://wa.me/+93707999452" target="_blank">Report Problem</a>
+  </div>
+
+  <main>
+    <section>
+      <h2>Other Tutorials :</h2>
+      <a id="image-link" href="https://example.com">
+        <img src="photo.jpg" alt="Example Image">
+        <div id="play-button"></div>
+      </a>
+    </section>
+    <section>
+      <h2>Best Technicals</h2>
+      <p>This is a section of text.</p>
+    </section>
+    <section>
+      <h2>About Team</h2>
+      <p>Another section of text.</p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 Best Technicals</p>
+  </footer>
+
+<script>
+  function toggleRightOverlay() {
+    var overlay = document.getElementById('rightOverlay');
+    overlay.classList.toggle('overlay-show');
+  }
+
+</script>
+
+</body>
+</html>
