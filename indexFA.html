@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاسبه نرخ همستر</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .form-container {
+            width: 95%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px
+            overflow: auto;
+        }
+        .image-pi {
+            text-align:center;
+            padding: 10px 10px 90px 10px;
+        }
+        .image-pi img {
+            width:100px;
+            height:auto;
+        }
+        .form-container h3 {
+            margin-top: 10px;
+            font-size:25px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .nerkh-pi {
+            text-align:center;
+            padding: 10px 10px 10px 10px;
+            padding-bottom:40px;
+        }
+        .nerkh-pi img {
+            width:100%;
+            height:auto;
+            padding-bottom:4px;
+        }
+        #number-input {
+            width: 98%;
+            height: 33px;
+            font-size: 16px;
+            border-radius: 15px;
+            border: 1.5px solid black;
+            text-align: center;
+        }
+        #number-input::placeholder {
+            text-align: center;
+        }
+        #number-input::-webkit-input-placeholder {
+            text-align: center;
+        }
+        #number-input::-moz-placeholder {
+            text-align: center;
+        }
+        #number-input:-ms-input-placeholder {
+            text-align: center;
+        }
+        .calculate {
+            text-align:center;
+            margin-bottom:20px;
+        }
+        button {
+            width: 100px;
+            padding: 5px;
+            background-color: #09A629;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size:23px;
+            font-weight:500;
+        }
+        button:hover {
+            background-color: #128028;
+        }
+        .logs {
+            text-align:center;
+            border-radius: 5px;
+            weight: 90%;
+            hight:10px;
+            background-color:#f0f0f0;
+            padding: 10px 10px 10px 10px;
+        }
+        .logs span {
+            font-size: 18px;
+            padding-top: 10px;
+        }
+        </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="image-pi"><img src="logo.webp"></img><h3>محاسبه نرخ توکن همستر<h3></div>
+            <div class="nerkh-pi"><img src="total.png"></img><input type="number" id="number-input" placeholder="مقدار توکن را اینجا وارد کنید" inputmode="numeric" pattern="[0-9]*"></div>
+            <div class="calculate"><button style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); " onclick=calculateRate()>محاسبه</button></div>
+            <div class="logs"></div>
+            <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
+            <button style="background-color: #fff; color: black; box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); width: 130px; height:60px; margin: 5px 5px 5px 5px; cursor: none;" onclick="this.style.backgroundColor = '#ddd'; setTimeout(function(){ this.style.backgroundColor = '#fff'; }.bind(this), 500); location.href='https://t.me/best_technicals'">کانال سازنده</button>
+            <button style="background-color: #fff; color: black; box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); width: 130px; height:60px; margin: 5px 5px 5px 5px; cursor: none;" onclick="this.style.backgroundColor = '#ddd'; setTimeout(function(){ this.style.backgroundColor = '#fff'; }.bind(this), 500); location.href='https://t.me/HamesterG'">کانال ایردراپ</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var tokenPrice = 0;
+        var irrusd = 58000;
+        var afnusd = 70;
+        function getTokenPrice() {
+            var url = "https://www.gate.io/api-price/api/inner/v1/price/coinLine";
+            var data = "time=1d&gate_id=hamster-kombat-hmstr-1";
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: data
+            })
+            .then(response => response.json())
+            .then(data => {
+                var currentDate = Math.floor(Date.now() / 1000);
+                var closestPrice = null;
+                var minDiff = Infinity;
+                if (data.data && data.data.list) {
+                    data.data.list.forEach(item => {
+                        var timeDiff = Math.abs(item.d_date_ - currentDate);
+                        if (timeDiff < minDiff) {
+                            minDiff = timeDiff;
+                            closestPrice = item.max_price;
+                        }
+                    });
+                }
+                if (closestPrice !== null) {
+                    tokenPrice = closestPrice; 
+                    console.log(tokenPrice);
+                } else {
+                    console.error("Price Not Found");
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        
+        function calculateRate() {
+            const tokenValue = document.getElementById('number-input').value;
+            const logs = document.querySelector('.logs');
+            if ( !(tokenValue == "")) {
+                logs.innerHTML = '';
+                var usdpricepub = tokenValue * tokenPrice
+                var usdprice = (tokenValue * tokenPrice).toFixed(2);
+                var toman = Math.floor(irrusd * usdpricepub);
+                var tomanFormatted = toman.toLocaleString('fa-IR');
+                var afnprice = Math.floor(usdpricepub * afnusd)
+                console.log(usdprice);
+                console.log(tomanFormatted);
+                logs.innerHTML = `<h3>:ارزش توکن شما</h3><br>
+                <span>به دلار: ${usdprice}</span><br>
+                <span>به تومان: ${tomanFormatted}</span><br>
+               <span>به افغانی: ${afnprice}</span><br>
+               <span style="color:#ffc107">ارزش توکن همستر به صورت لحظه‌ای از صرافی گرفته میشود gate.io</span>`;
+            }else {
+                logs.innerHTML = '<span>لطفا مقدار توکن را وارد کنید</span>';
+            }
+        }
+        window.onload = getTokenPrice;
+    </script>
+</body>
+</html>
