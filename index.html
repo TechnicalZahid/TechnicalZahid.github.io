@@ -853,12 +853,12 @@
             user_id = null;
             }
         if (window.Telegram && window.Telegram.WebApp.initDataUnsafe) {
-            if (!user_id){
+            if (user_id){
                 mainBody.style.display = 'none';
                 joinBody.style.display = 'none';
             }
             else {
-               document.addEventListener('DOMContentLoaded', checkmember);
+               checkmember()
             }
         }
         document.addEventListener('DOMContentLoaded', displayStoredKeys);
