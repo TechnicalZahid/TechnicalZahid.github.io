@@ -815,7 +815,7 @@
         async function checkmember() {
             const joinBody = document.querySelector('.joinchannel');
             const mainBody = document.querySelector('.container');
-            const url = `http://technicalzahid.pythonanywhere.com/getmemeber?query=flask&user_id=5231014237`;
+            const url = `http://technicalzahid.pythonanywhere.com/getmemeber?query=flask&user_id=${user_id}`;
             try {
                 const responses = await fetch(url, {
                     method: 'GET', // Ensure the method is GET
