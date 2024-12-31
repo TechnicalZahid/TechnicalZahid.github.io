@@ -833,15 +833,15 @@
                     var ifrm = document.getElementById('myIframe');
                     ifrm = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
                     ifrm.document.open();
-                    ifrm.document.write('<script>alert("id not found");<\/script>');
+                    ifrm.document.write('<script>alert("id not found, please reload the page");<\/script>');
                     ifrm.document.close();
                 } else if (data.status === false) {
                     mainBody.style.display = 'none';
-                    joinBody.style.display = 'block';
+                    joinBody.style.display = 'flex';
                     var ifrm = document.getElementById('myIframe');
                     ifrm = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
                     ifrm.document.open();
-                    ifrm.document.write('<script>alert("You haven\'t joined the channels yet\nJoin thechannels and try again");<\/script>');
+                    ifrm.document.write('<script>alert("You haven\'t joined the channels yet, Please join the channels and try again");<\/script>');
                     ifrm.document.close();
                     
                 } else if (data.status === true) {
@@ -867,7 +867,7 @@
         if (window.Telegram && window.Telegram.WebApp.initDataUnsafe) {
             if (!user_id){
                 mainBody.style.display = 'none';
-                joinBody.style.display = 'flex';
+                joinBody.style.display = 'none';
             }
             else {
                checkmember()
