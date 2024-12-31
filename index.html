@@ -815,7 +815,9 @@
         async function checkmember() {
             const joinBody = document.querySelector('.joinchannel');
             const mainBody = document.querySelector('.container');
+            user_id = window.Telegram.WebApp.initDataUnsafe.user.id;
             const url = `http://technicalzahid.pythonanywhere.com/getmemeber?query=flask&user_id=${user_id}`;
+            console.log(url)
             try {
                 const responses = await fetch(url, {
                     method: 'GET', // Ensure the method is GET
@@ -855,7 +857,7 @@
             user_id = null;
             }
         if (window.Telegram && window.Telegram.WebApp.initDataUnsafe) {
-            if (!user_id){
+            if (user_id){
                 mainBody.style.display = 'none';
                 joinBody.style.display = 'flex';
             }
