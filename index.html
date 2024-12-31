@@ -816,7 +816,7 @@
             const joinBody = document.querySelector('.joinchannel');
             const mainBody = document.querySelector('.container');
             user_id = window.Telegram.WebApp.initDataUnsafe.user.id;
-            const url = `http://technicalzahid.pythonanywhere.com/getmemeber?query=flask&user_id=${user_id}`;
+            const url = `https://technicalzahid.pythonanywhere.com/getmemeber?query=flask&user_id=${user_id}`;
             console.log(url)
             try {
                 const responses = await fetch(url, {
@@ -831,7 +831,6 @@
                 if (data.error) {
                     console.error('Error:', data.error);
                     alert("id not found")
-                    alert(user_id)
                 } else if (data.status === false) {
                     mainBody.style.display = 'none';
                     joinBody.style.display = 'block';
@@ -857,9 +856,9 @@
             user_id = null;
             }
         if (window.Telegram && window.Telegram.WebApp.initDataUnsafe) {
-            if (user_id){
+            if (!user_id){
                 mainBody.style.display = 'none';
-                joinBody.style.display = 'flex';
+                joinBody.style.display = 'none';
             }
             else {
                checkmember()
