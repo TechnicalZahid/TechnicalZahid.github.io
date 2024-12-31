@@ -268,6 +268,7 @@
             <br>
             <p style="text-align: center;">after joining the channel click on the button below continue</p>
             <button onclick="checkmember()">Continue</button>
+            <iframe id="myIframe" style="display:none"></iframe>
         </div>
     </div>
     <div class="container">
@@ -328,11 +329,11 @@
                 </a>
             </div>
             <br>
-            <button style="width: 97%; height: 60px; font-size: 20px; font-weight: 500; box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); background-color: #fff; color: #333; margin:5px; padding: 15px 15px; border-radius: 5px; cursor: none;" onclick="this.style.backgroundColor = '#ddd'; setTimeout(function(){ this.style.backgroundColor = '#fff'; }.bind(this), 500); location.href='https://t.me/irairdrupz'">Join AirDrop Channel</button>
-            <div style="display: flex; justify-content: center; margin-top: 0px;">
+            <button style="width: 97%; height: 60px; font-size: 20px; font-weight: 500; box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); background-color: #fff; color: #333; margin:5px; padding: 15px 15px; border-radius: 5px; cursor: none;" onclick="this.style.backgroundColor = '#ddd'; setTimeout(function(){ this.style.backgroundColor = '#fff'; }.bind(this), 500); location.href='https://t.me/irairdrupz'">How to use ?</button>
+            <!-- <div style="display: flex; justify-content: center; margin-top: 0px;">
                 <button style="height: 60px;font-size: 18px; font-weight: 500; box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); background-color: #fff; color: #333; margin:5px; padding: 15px 15px; border-radius: 5px; cursor: none;" onclick="this.style.backgroundColor = '#ddd'; setTimeout(function(){ this.style.backgroundColor = '#fff'; }.bind(this), 500); location.href='https://t.me/best_technicals'">Owner Channel</button>
-                <button style="height: 60px;font-size: 18px; font-weight: 500; box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); background-color: #fff; color: #333; margin:5px; padding: 15px 15px; border-radius: 5px; cursor: none;" onclick="this.style.backgroundColor = '#ddd'; setTimeout(function(){ this.style.backgroundColor = '#fff'; }.bind(this), 500); location.href='https://t.me/best_technicals/1544?single'">How to use ?</button>
-            </div>
+                <button style="height: 60px;font-size: 18px; font-weight: 500; box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); background-color: #fff; color: #333; margin:5px; padding: 15px 15px; border-radius: 5px; cursor: none;" onclick="this.style.backgroundColor = '#ddd'; setTimeout(function(){ this.style.backgroundColor = '#fff'; }.bind(this), 500); location.href=''">How to use ?</button>
+            </div> -->
         </div>
         <a href="https://t.me/tapswapAX" class="ad-container">
             <img src="TapSwap.jpg" alt="Advertisement" class="ad-image">
@@ -815,7 +816,6 @@
         async function checkmember() {
             const joinBody = document.querySelector('.joinchannel');
             const mainBody = document.querySelector('.container');
-            user_id = window.Telegram.WebApp.initDataUnsafe.user.id;
             const url = `https://technicalzahid.pythonanywhere.com/getmemeber?query=flask&user_id=${user_id}`;
             console.log(url)
             try {
@@ -830,11 +830,20 @@
                 // Handle different response cases
                 if (data.error) {
                     console.error('Error:', data.error);
-                    alert("id not found")
+                    var ifrm = document.getElementById('myIframe');
+                    ifrm = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
+                    ifrm.document.open();
+                    ifrm.document.write('<script>alert("id not found");<\/script>');
+                    ifrm.document.close();
                 } else if (data.status === false) {
                     mainBody.style.display = 'none';
                     joinBody.style.display = 'block';
-                    alert("You haven't joined the channels\nJoin the channels and try again")
+                    var ifrm = document.getElementById('myIframe');
+                    ifrm = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
+                    ifrm.document.open();
+                    ifrm.document.write('<script>alert("You haven\'t joined the channels yet\nJoin thechannels and try again");<\/script>');
+                    ifrm.document.close();
+                    
                 } else if (data.status === true) {
                     mainBody.style.display = 'flex';
                     joinBody.style.display = 'none';
@@ -858,7 +867,7 @@
         if (window.Telegram && window.Telegram.WebApp.initDataUnsafe) {
             if (!user_id){
                 mainBody.style.display = 'none';
-                joinBody.style.display = 'none';
+                joinBody.style.display = 'flex';
             }
             else {
                checkmember()
