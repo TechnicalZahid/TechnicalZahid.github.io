@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hamster Code Generator</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,7 +12,7 @@
             padding: 20px;
         }
         .container {
-            display: flex;
+            display: none;
             justify-content: space-between;
             max-width: 1000px;
             margin: 0 auto;
@@ -22,7 +23,7 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px
+            margin-bottom: 20px;
             overflow: auto;
         }
         .form-container h2 {
@@ -210,7 +211,7 @@
             z-index: 1;
         }
         .ad-container {
-            display: flex;
+            display: none;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
@@ -256,26 +257,35 @@
     </style>
 </head>
 <body>
+    <div class ="joinchannel" style="display: none;">
+        <div class="form-container">
+            <h3>join Channels</h3>
+            <p style="text-align: center; color: #FF0000;">! for using this tool you should join this channels</p>
+            <div style="display: flex; justify-content: center; margin-top: 0px;">
+                <button style="height: 60px;font-size: 18px; font-weight: 500; box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); background-color: #fff; color: #333; margin:5px; padding: 15px 15px; border-radius: 5px;" onclick="this.style.backgroundColor = '#ddd'; setTimeout(function(){ this.style.backgroundColor = '#fff'; }.bind(this), 500); location.href='https://t.me/best_technicals'">First Channel</button>
+                <button style="height: 60px;font-size: 18px; font-weight: 500; box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); background-color: #fff; color: #333; margin:5px; padding: 15px 15px; border-radius: 5px;" onclick="this.style.backgroundColor = '#ddd'; setTimeout(function(){ this.style.backgroundColor = '#fff'; }.bind(this), 500); location.href='https://t.me/best_technicals/1544?single'">Second Channel</button>
+            </div>
+            <br>
+            <p style="text-align: center;">after joining the channel click on the button below continue</p>
+            <button onclick="checkmember()">Continue</button>
+        </div>
+    </div>
     <div class="container">
         <div class="form-container">
             <h2>Hamster PlayGround Diamonds <img class="nav-images"src="diamond.webp" alt="Diamond Image"></img></h2>
             <br>
             <label for="appSelect">Select application:</label>
             <select id="appSelect" onchange="updateConstants()">
-                <option value="Cube" selected>Chain Cube 2048</option>
-                <option value="Train">Train Miner</option>
+                <option value="Dood" selected>Doodle God</option>
                 <option value="Merge">Merge Away</option>
+                <option value="Dale">Merge Dale</option>
+                <option value="Magic">Aftermagic</option>
                 <option value="Poly">Polysphere</option>
                 <option value="Zoo">Zoopolis</option>
-                <option value="Stone">Stone Age</option>
                 <option value="Bounc">Bouncemasters</option>
-                <option value="Hide">Hide Ball</option>
-                <option value="Count">Count Masters</option>
-                <option value="Infct">Infected Frontier</option>
                 <option value="Fctry">Factory World</option>
-                <option value="Snack">Snake Run</option>
                 <option value="Cook">Cooking Stories</option>
-                <option value="Tower">Tower Defence</option>
+                <option value="Cube">Chain Cube 2048</option>
                 <option value="All">All Games Codes</option>
             </select>
             <label id="keyCountLabel" for="keyCount">Number of codes:</label>
@@ -283,13 +293,15 @@
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
-                <option value="4" selected>4</option> <!-- Default to 4 -->
+                <option value="4"selected>4</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
                 <option value="7">7</option>
                 <option value="8">8</option>
                 <option value="9">9</option>
                 <option value="10">10</option>
+                <option value="40">40</option>
+
             </select>
             <button onclick="generateKeys()">Generate Codes</button>
         </div>
@@ -332,39 +344,39 @@
     </div>
     <script>
         const appConfigs = {
-            Poly: {
-                appToken: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
-                promoId: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
-                gentime: 7
+        	Dood: {
+                appToken: 'e53b902b-d490-406f-9770-21a27fff1d31',
+                promoId: 'e53b902b-d490-406f-9770-21a27fff1d31',
+                gentime: 4
             },
             Merge: {
                 appToken: '8d1cc2ad-e097-4b86-90ef-7a27e19fb833',
                 promoId: 'dc128d28-c45b-411c-98ff-ac7726fbaea4',
                 gentime: 4
             },
-            Hide: {
-                appToken: '4bf4966c-4d22-439b-8ff2-dc5ebca1a600',
-                promoId: '4bf4966c-4d22-439b-8ff2-dc5ebca1a600',
-                gentime: 5
-            },
-            Count: {
-                appToken: '4bdc17da-2601-449b-948e-f8c7bd376553',
-                promoId: '4bdc17da-2601-449b-948e-f8c7bd376553',
-                gentime: 5
-            },
-            Stone: {
-                appToken: '04ebd6de-69b7-43d1-9c4b-04a6ca3305af',
-                promoId: '04ebd6de-69b7-43d1-9c4b-04a6ca3305af',
+            Magic: {
+                appToken: 'e355f8c7-3764-49cd-a298-530d666435c3',
+                promoId: 'e355f8c7-3764-49cd-a298-530d666435c3',
                 gentime: 4
             },
-            Train: {
-                appToken: '82647f43-3f87-402d-88dd-09a90025313f',
-                promoId: 'c4480ac7-e178-4973-8061-9ed5b2e17954',
-                gentime: 2
+            Poly: {
+                appToken: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
+                promoId: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
+                gentime: 7
             },
-            Snack: {
-                appToken: 'c8e017e2-8817-4d02-bce6-b951e74bb18f',
-                promoId: 'c8e017e2-8817-4d02-bce6-b951e74bb18f',
+            Zoo: {
+                appToken: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
+                promoId: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
+                gentime: 3
+            },
+            Bounc: {
+                appToken: 'bc72d3b9-8e91-4884-9c33-f72482f0db37',
+                promoId: 'bc72d3b9-8e91-4884-9c33-f72482f0db37',
+                gentime: 3
+            },
+            Fctry: {
+                appToken: 'd02fc404-8985-4305-87d8-32bd4e66bb16',
+                promoId: 'd02fc404-8985-4305-87d8-32bd4e66bb16',
                 gentime: 3
             },
             Cook: {
@@ -372,36 +384,12 @@
                 promoId: 'ed526e8c-e6c8-40fd-b72a-9e78ff6a2054',
                 gentime: 3
             },
-            Tower: {
-                appToken: '53bf823a-948c-48c4-8bd5-9c21903416df',
-                promoId: '53bf823a-948c-48c4-8bd5-9c21903416df',
-                gentime: 3
-            },
             Cube: {
                 appToken: 'd1690a07-3780-4068-810f-9b5bbf2931b2',
                 promoId: 'b4170868-cef0-424f-8eb9-be0622e8e8e3',
-                gentime: 2
+                gentime: 3
             },
-            Zoo: {
-                appToken: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
-                promoId: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
-                gentime: 2
-            },
-            Bounc: {
-                appToken: 'bc72d3b9-8e91-4884-9c33-f72482f0db37',
-                promoId: 'bc72d3b9-8e91-4884-9c33-f72482f0db37',
-                gentime: 2
-            },
-            Infct: {
-                appToken: 'eb518c4b-e448-4065-9d33-06f3039f0fcb',
-                promoId: 'eb518c4b-e448-4065-9d33-06f3039f0fcb',
-                gentime: 2
-            },
-            Fctry: {
-                appToken: 'd02fc404-8985-4305-87d8-32bd4e66bb16',
-                promoId: 'd02fc404-8985-4305-87d8-32bd4e66bb16',
-                gentime: 2
-            },
+            
         };
 
         const DEBUG_MODE = false;
@@ -702,7 +690,7 @@
                     generateKeysForApp(config.appToken, config.promoId, NUM_KEYS_TO_GENERATE, selectedApp); // Start generating keys without waiting for results
 
                     currentAppIndex = (currentAppIndex + 1); // Move to the next app in the cycle
-                    }, 000);
+                    }, 100);
             } else {
                 NUM_KEYS_TO_GENERATE = parseInt(document.getElementById('keyCount').value); // Get selected key count
                 console.log(NUM_KEYS_TO_GENERATE)
@@ -823,8 +811,58 @@
                 });
             }
         }
-        document.addEventListener('DOMContentLoaded', displayStoredKeys)
+
+        async function checkmember() {
+            const joinBody = document.querySelector('.joinchannel');
+            const mainBody = document.querySelector('.container');
+            const url = `http://technicalzahid.pythonanywhere.com/getmemeber?query=flask&user_id=5231014237`;
+            try {
+                const responses = await fetch(url, {
+                    method: 'GET', // Ensure the method is GET
+                });
+                const data = await responses.json();
+                console.log(data);
+                // Check if the response is ok (status in the range 200-299)
+
+                // Parse the JSON response
+                // Handle different response cases
+                if (data.error) {
+                    console.error('Error:', data.error);
+                } else if (data.status === false) {
+                    mainBody.style.display = 'none';
+                    joinBody.style.display = 'block';
+                    alert("You haven't joined the channels\nJoin the channels and try again")
+                } else if (data.status === true) {
+                    mainBody.style.display = 'flex';
+                    joinBody.style.display = 'none';
+                } else {
+                    console.log('Unexpected response:', data);
+                }
+            } catch (error) {
+                // Handle any errors that occurred during the fetch
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        const joinBody = document.querySelector('.joinchannel');
+        const mainBody = document.querySelector('.container');
+        let user_id;
+        try {
+            user_id = window.Telegram.WebApp.initDataUnsafe.user.id;
+        } catch (err) {
+            user_id = null;
+            }
+        if (window.Telegram && window.Telegram.WebApp.initDataUnsafe) {
+            if (!user_id){
+                mainBody.style.display = 'none';
+                joinBody.style.display = 'none';
+            }
+            else {
+               document.addEventListener('DOMContentLoaded', checkmember);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', displayStoredKeys);
     </script>
-    <div class="version">v1.4.0</div>
+
 </body>
 </html>
